@@ -32,3 +32,24 @@ enum SymptomSort {
   const SymptomSort(this.label);
   final String label;
 }
+
+/// "Has severity" filter for the Types list.
+enum TypeSeverityFilter {
+  all('All types'),
+  withSeverity('Severity tracked'),
+  withoutSeverity('No severity');
+
+  const TypeSeverityFilter(this.label);
+  final String label;
+}
+
+/// Ordering options for the Types list.
+enum TypeSort {
+  nameAtoZ('Name (A–Z)'),
+  nameZtoA('Name (Z–A)'),
+  severityFirst('Severity tracked first'),
+  severityLast('Severity tracked last');
+
+  const TypeSort(this.label);
+  final String label;
+}

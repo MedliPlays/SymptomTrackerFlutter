@@ -540,6 +540,163 @@ abstract class _$SymptomsSortOrder extends $Notifier<SymptomSort> {
   }
 }
 
+@ProviderFor(TypesSeverityFilter)
+final typesSeverityFilterProvider = TypesSeverityFilterProvider._();
+
+final class TypesSeverityFilterProvider
+    extends $NotifierProvider<TypesSeverityFilter, TypeSeverityFilter> {
+  TypesSeverityFilterProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'typesSeverityFilterProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$typesSeverityFilterHash();
+
+  @$internal
+  @override
+  TypesSeverityFilter create() => TypesSeverityFilter();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(TypeSeverityFilter value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<TypeSeverityFilter>(value),
+    );
+  }
+}
+
+String _$typesSeverityFilterHash() =>
+    r'f0059dd9027caad30aa4c5800a73bf8980922af1';
+
+abstract class _$TypesSeverityFilter extends $Notifier<TypeSeverityFilter> {
+  TypeSeverityFilter build();
+  @$mustCallSuper
+  @override
+  WhenComplete runBuild() {
+    final ref = this.ref as $Ref<TypeSeverityFilter, TypeSeverityFilter>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<TypeSeverityFilter, TypeSeverityFilter>,
+              TypeSeverityFilter,
+              Object?,
+              Object?
+            >;
+    return element.handleCreate(ref, build);
+  }
+}
+
+@ProviderFor(TypesSortOrder)
+final typesSortOrderProvider = TypesSortOrderProvider._();
+
+final class TypesSortOrderProvider
+    extends $NotifierProvider<TypesSortOrder, TypeSort> {
+  TypesSortOrderProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'typesSortOrderProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$typesSortOrderHash();
+
+  @$internal
+  @override
+  TypesSortOrder create() => TypesSortOrder();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(TypeSort value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<TypeSort>(value),
+    );
+  }
+}
+
+String _$typesSortOrderHash() => r'66fc943468b8b92ac65711cef4255f814e29c5c6';
+
+abstract class _$TypesSortOrder extends $Notifier<TypeSort> {
+  TypeSort build();
+  @$mustCallSuper
+  @override
+  WhenComplete runBuild() {
+    final ref = this.ref as $Ref<TypeSort, TypeSort>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<TypeSort, TypeSort>,
+              TypeSort,
+              Object?,
+              Object?
+            >;
+    return element.handleCreate(ref, build);
+  }
+}
+
+/// Types after applying the Types-list filter + sort.
+
+@ProviderFor(displayedTypes)
+final displayedTypesProvider = DisplayedTypesProvider._();
+
+/// Types after applying the Types-list filter + sort.
+
+final class DisplayedTypesProvider
+    extends
+        $FunctionalProvider<
+          List<SymptomType>,
+          List<SymptomType>,
+          List<SymptomType>
+        >
+    with $Provider<List<SymptomType>> {
+  /// Types after applying the Types-list filter + sort.
+  DisplayedTypesProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'displayedTypesProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$displayedTypesHash();
+
+  @$internal
+  @override
+  $ProviderElement<List<SymptomType>> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  List<SymptomType> create(Ref ref) {
+    return displayedTypes(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(List<SymptomType> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<List<SymptomType>>(value),
+    );
+  }
+}
+
+String _$displayedTypesHash() => r'525a40072e9cd6e46f77ea53143d3eb2b9289f05';
+
 /// Symptoms after applying the list filter + sort order.
 
 @ProviderFor(filteredSymptoms)

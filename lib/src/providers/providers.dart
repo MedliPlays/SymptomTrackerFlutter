@@ -91,6 +91,55 @@ class SymptomsSortOrder extends _$SymptomsSortOrder {
   void update(SymptomSort sort) => state = sort;
 }
 
+@riverpod
+class TypesSeverityFilter extends _$TypesSeverityFilter {
+  @override
+  TypeSeverityFilter build() => TypeSeverityFilter.all;
+
+  void update(TypeSeverityFilter filter) => state = filter;
+}
+
+@riverpod
+class TypesSortOrder extends _$TypesSortOrder {
+  @override
+  TypeSort build() => TypeSort.nameAtoZ;
+
+  void update(TypeSort sort) => state = sort;
+}
+
+/// Types after applying the Types-list filter + sort.
+@riverpod
+List<SymptomType> displayedTypes(Ref ref) {
+  final all = ref.watch(symptomTypesProvider).asData?.value ?? const [];
+  final severityFilter = ref.watch(typesSeverityFilterProvider);
+  final sort = ref.watch(typesSortOrderProvider);
+
+  final filtered = all.where((t) => switch (severityFilter) {
+        TypeSeverityFilter.all => true,
+        TypeSeverityFilter.withSeverity => t.hasSeverity,
+        TypeSeverityFilter.withoutSeverity => !t.hasSeverity,
+      }).toList();
+
+  int byName(SymptomType a, SymptomType b) =>
+      a.name.toLowerCase().compareTo(b.name.toLowerCase());
+
+  switch (sort) {
+    case TypeSort.nameAtoZ:
+      filtered.sort(byName);
+    case TypeSort.nameZtoA:
+      filtered.sort((a, b) => byName(b, a));
+    case TypeSort.severityFirst:
+      filtered.sort((a, b) => a.hasSeverity == b.hasSeverity
+          ? byName(a, b)
+          : (a.hasSeverity ? -1 : 1));
+    case TypeSort.severityLast:
+      filtered.sort((a, b) => a.hasSeverity == b.hasSeverity
+          ? byName(a, b)
+          : (a.hasSeverity ? 1 : -1));
+  }
+  return filtered;
+}
+
 // ---- Derived lists ----------------------------------------------------------
 
 /// Symptoms after applying the list filter + sort order.
