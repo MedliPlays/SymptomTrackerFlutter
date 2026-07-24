@@ -4,21 +4,22 @@ part 'symptom_filter.freezed.dart';
 
 /// Filter applied to symptom lists and charts.
 ///
-/// When [dateEnabled] is false the date bounds are ignored (all dates match).
-/// [typeId] of null means "all types". Date bounds are treated as inclusive
-/// whole days by the filtering logic (see `filteredSymptoms`).
+/// Each date bound is independently optional: a null [after]/[before] simply
+/// isn't applied (no on/off toggle needed). [typeId] of null means "all types".
+/// Date bounds are treated as inclusive whole days by the filtering logic
+/// (see `matchesFilter`).
 @freezed
 abstract class SymptomFilter with _$SymptomFilter {
   const SymptomFilter._();
 
   const factory SymptomFilter({
-    @Default(false) bool dateEnabled,
     DateTime? after,
     DateTime? before,
     String? typeId,
   }) = _SymptomFilter;
 
-  bool get isSet => dateEnabled || typeId != null;
+  bool get hasDateFilter => after != null || before != null;
+  bool get isSet => hasDateFilter || typeId != null;
 }
 
 /// Ordering options for the "All Symptoms" list.

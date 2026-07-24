@@ -43,8 +43,26 @@ class SymptomFilterSheet extends HookConsumerWidget {
           : draft.value.copyWith(before: picked));
     }
 
-    final after = draft.value.after ?? now.subtract(const Duration(days: 10));
-    final before = draft.value.before ?? now;
+    Widget dateRow({required bool isAfter}) {
+      final value = isAfter ? draft.value.after : draft.value.before;
+      return ListTile(
+        contentPadding: EdgeInsets.zero,
+        title: Text(isAfter ? 'After' : 'Before'),
+        subtitle: Text(value == null
+            ? 'Any date'
+            : DateFormat.yMMMd().format(value)),
+        trailing: value == null
+            ? const Icon(Icons.event)
+            : IconButton(
+                tooltip: 'Clear',
+                icon: const Icon(Icons.clear),
+                onPressed: () => apply(isAfter
+                    ? draft.value.copyWith(after: null)
+                    : draft.value.copyWith(before: null)),
+              ),
+        onTap: () => pickDate(isAfter: isAfter),
+      );
+    }
 
     return SafeArea(
       child: Padding(
@@ -63,30 +81,8 @@ class SymptomFilterSheet extends HookConsumerWidget {
                 ),
               ],
             ),
-            SwitchListTile(
-              contentPadding: EdgeInsets.zero,
-              title: const Text('Filter by date'),
-              value: draft.value.dateEnabled,
-              onChanged: (v) => apply(draft.value.copyWith(
-                dateEnabled: v,
-                after: draft.value.after ?? after,
-                before: draft.value.before ?? before,
-              )),
-            ),
-            if (draft.value.dateEnabled) ...[
-              ListTile(
-                contentPadding: EdgeInsets.zero,
-                title: const Text('After'),
-                trailing: Text(DateFormat.yMMMd().format(after)),
-                onTap: () => pickDate(isAfter: true),
-              ),
-              ListTile(
-                contentPadding: EdgeInsets.zero,
-                title: const Text('Before'),
-                trailing: Text(DateFormat.yMMMd().format(before)),
-                onTap: () => pickDate(isAfter: false),
-              ),
-            ],
+            dateRow(isAfter: true),
+            dateRow(isAfter: false),
             const SizedBox(height: 8),
             DropdownButtonFormField<String?>(
               initialValue: draft.value.typeId,

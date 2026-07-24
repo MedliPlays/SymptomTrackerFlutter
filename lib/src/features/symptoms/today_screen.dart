@@ -25,31 +25,14 @@ class TodayScreen extends ConsumerWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Today'),
-        actions: [
-          if (hasTypes)
-            IconButton(
-              tooltip: 'Log symptom',
-              onPressed: addSymptom,
-              icon: const Icon(Icons.add),
-            ),
-        ],
-      ),
+      appBar: AppBar(title: const Text('Today')),
       body: !hasTypes
           ? const NoTypesView()
           : today.isEmpty
-              ? EmptyState(
+              ? const EmptyState(
                   icon: Icons.check_circle_outline,
                   title: 'No symptoms today 🎉',
-                  message: 'Nothing logged yet today.',
-                  actions: [
-                    FilledButton.icon(
-                      onPressed: addSymptom,
-                      icon: const Icon(Icons.add),
-                      label: const Text('Log a symptom'),
-                    ),
-                  ],
+                  message: 'Nothing logged yet today. Tap + to add one.',
                 )
               : ListView.builder(
                   itemCount: today.length,
@@ -72,7 +55,7 @@ class TodayScreen extends ConsumerWidget {
                     );
                   },
                 ),
-      floatingActionButton: hasTypes && today.isNotEmpty
+      floatingActionButton: hasTypes
           ? FloatingActionButton(
               onPressed: addSymptom,
               child: const Icon(Icons.add),

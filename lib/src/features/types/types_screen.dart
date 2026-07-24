@@ -3,7 +3,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../models/symptom_type.dart';
 import '../../providers/providers.dart';
-import '../../util/series_color.dart';
 import 'no_types_view.dart';
 import 'type_editor_screen.dart';
 
@@ -25,17 +24,13 @@ class TypesScreen extends ConsumerWidget {
     int usage(String id) => symptoms.where((s) => s.typeId == id).length;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Types'),
-        actions: [
-          if (types.isNotEmpty)
-            IconButton(
-              tooltip: 'Add type',
+      appBar: AppBar(title: const Text('Types')),
+      floatingActionButton: types.isEmpty
+          ? null
+          : FloatingActionButton(
               onPressed: () => _openEditor(context),
-              icon: const Icon(Icons.add),
+              child: const Icon(Icons.add),
             ),
-        ],
-      ),
       body: types.isEmpty
           ? const NoTypesView()
           : ListView.builder(
@@ -44,10 +39,6 @@ class TypesScreen extends ConsumerWidget {
                 final type = types[index];
                 final count = usage(type.id);
                 return ListTile(
-                  leading: CircleAvatar(
-                    radius: 6,
-                    backgroundColor: seriesColor(type.name),
-                  ),
                   title: Text(type.name),
                   subtitle: Text(
                     '${count == 0 ? 'No' : count} '

@@ -465,7 +465,7 @@ final class ChartsFilterProvider
   }
 }
 
-String _$chartsFilterHash() => r'44c624b524de0a82b5485aa9ad15b785c43c26f3';
+String _$chartsFilterHash() => r'c36a8cc884871837608dc22502ab981125f37537';
 
 /// Filter for the Charts screen. Defaults to a rolling 10-day window, matching
 /// the original app.

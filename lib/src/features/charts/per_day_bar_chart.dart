@@ -63,6 +63,8 @@ class PerDayBarChart extends StatelessWidget {
                 alignment: BarChartAlignment.spaceAround,
                 barTouchData: BarTouchData(
                   touchTooltipData: BarTouchTooltipData(
+                    fitInsideVertically: true,
+                    fitInsideHorizontally: true,
                     getTooltipItem: (group, groupIndex, rod, rodIndex) {
                       final bucket = days[groupIndex];
                       final lines = <TextSpan>[];

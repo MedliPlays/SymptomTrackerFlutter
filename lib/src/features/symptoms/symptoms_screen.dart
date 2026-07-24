@@ -52,11 +52,6 @@ class SymptomsScreen extends ConsumerWidget {
                   PopupMenuItem(value: option, child: Text(option.label)),
               ],
             ),
-            IconButton(
-              tooltip: 'Log symptom',
-              onPressed: addSymptom,
-              icon: const Icon(Icons.add),
-            ),
           ],
         ],
       ),
@@ -69,17 +64,10 @@ class SymptomsScreen extends ConsumerWidget {
                       title: 'No matches',
                       message: 'No symptoms match your current filters.',
                     )
-                  : EmptyState(
+                  : const EmptyState(
                       icon: Icons.heart_broken_outlined,
                       title: 'No symptoms yet',
-                      message: 'Log your first symptom to start tracking.',
-                      actions: [
-                        FilledButton.icon(
-                          onPressed: addSymptom,
-                          icon: const Icon(Icons.add),
-                          label: const Text('Log a symptom'),
-                        ),
-                      ],
+                      message: 'Tap + to log your first symptom.',
                     ))
               : ListView.builder(
                   itemCount: symptoms.length,
@@ -104,7 +92,7 @@ class SymptomsScreen extends ConsumerWidget {
                     );
                   },
                 ),
-      floatingActionButton: hasTypes && symptoms.isNotEmpty
+      floatingActionButton: hasTypes
           ? FloatingActionButton(
               onPressed: addSymptom,
               child: const Icon(Icons.add),

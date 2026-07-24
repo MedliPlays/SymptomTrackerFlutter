@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 
 import '../models/symptom.dart';
 import '../providers/providers.dart';
-import '../util/series_color.dart';
 import 'severity_badge.dart';
 
 /// A single symptom row used by the Today and All Symptoms lists.
@@ -35,10 +34,6 @@ class SymptomTile extends ConsumerWidget {
 
     return ListTile(
       onTap: onTap,
-      leading: CircleAvatar(
-        radius: 6,
-        backgroundColor: seriesColor(name),
-      ),
       title: Text(name),
       subtitle: Text(subtitle),
       trailing: Row(

@@ -76,6 +76,8 @@ class SeverityScatterChart extends StatelessWidget {
                 scatterTouchData: ScatterTouchData(
                   enabled: true,
                   touchTooltipData: ScatterTouchTooltipData(
+                    fitInsideVertically: true,
+                    fitInsideHorizontally: true,
                     getTooltipItems: (spot) {
                       final s = spot as _SeveritySpot;
                       return ScatterTooltipItem(

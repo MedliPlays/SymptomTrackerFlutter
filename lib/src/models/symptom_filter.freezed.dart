@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SymptomFilter {
 
- bool get dateEnabled; DateTime? get after; DateTime? get before; String? get typeId;
+ DateTime? get after; DateTime? get before; String? get typeId;
 /// Create a copy of SymptomFilter
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $SymptomFilterCopyWith<SymptomFilter> get copyWith => _$SymptomFilterCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SymptomFilter&&(identical(other.dateEnabled, dateEnabled) || other.dateEnabled == dateEnabled)&&(identical(other.after, after) || other.after == after)&&(identical(other.before, before) || other.before == before)&&(identical(other.typeId, typeId) || other.typeId == typeId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SymptomFilter&&(identical(other.after, after) || other.after == after)&&(identical(other.before, before) || other.before == before)&&(identical(other.typeId, typeId) || other.typeId == typeId));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,dateEnabled,after,before,typeId);
+int get hashCode => Object.hash(runtimeType,after,before,typeId);
 
 @override
 String toString() {
-  return 'SymptomFilter(dateEnabled: $dateEnabled, after: $after, before: $before, typeId: $typeId)';
+  return 'SymptomFilter(after: $after, before: $before, typeId: $typeId)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $SymptomFilterCopyWith<$Res>  {
   factory $SymptomFilterCopyWith(SymptomFilter value, $Res Function(SymptomFilter) _then) = _$SymptomFilterCopyWithImpl;
 @useResult
 $Res call({
- bool dateEnabled, DateTime? after, DateTime? before, String? typeId
+ DateTime? after, DateTime? before, String? typeId
 });
 
 
@@ -62,10 +62,9 @@ class _$SymptomFilterCopyWithImpl<$Res>
 
 /// Create a copy of SymptomFilter
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? dateEnabled = null,Object? after = freezed,Object? before = freezed,Object? typeId = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? after = freezed,Object? before = freezed,Object? typeId = freezed,}) {
   return _then(_self.copyWith(
-dateEnabled: null == dateEnabled ? _self.dateEnabled : dateEnabled // ignore: cast_nullable_to_non_nullable
-as bool,after: freezed == after ? _self.after : after // ignore: cast_nullable_to_non_nullable
+after: freezed == after ? _self.after : after // ignore: cast_nullable_to_non_nullable
 as DateTime?,before: freezed == before ? _self.before : before // ignore: cast_nullable_to_non_nullable
 as DateTime?,typeId: freezed == typeId ? _self.typeId : typeId // ignore: cast_nullable_to_non_nullable
 as String?,
@@ -153,10 +152,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool dateEnabled,  DateTime? after,  DateTime? before,  String? typeId)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( DateTime? after,  DateTime? before,  String? typeId)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SymptomFilter() when $default != null:
-return $default(_that.dateEnabled,_that.after,_that.before,_that.typeId);case _:
+return $default(_that.after,_that.before,_that.typeId);case _:
   return orElse();
 
 }
@@ -174,10 +173,10 @@ return $default(_that.dateEnabled,_that.after,_that.before,_that.typeId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool dateEnabled,  DateTime? after,  DateTime? before,  String? typeId)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( DateTime? after,  DateTime? before,  String? typeId)  $default,) {final _that = this;
 switch (_that) {
 case _SymptomFilter():
-return $default(_that.dateEnabled,_that.after,_that.before,_that.typeId);case _:
+return $default(_that.after,_that.before,_that.typeId);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -194,10 +193,10 @@ return $default(_that.dateEnabled,_that.after,_that.before,_that.typeId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool dateEnabled,  DateTime? after,  DateTime? before,  String? typeId)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( DateTime? after,  DateTime? before,  String? typeId)?  $default,) {final _that = this;
 switch (_that) {
 case _SymptomFilter() when $default != null:
-return $default(_that.dateEnabled,_that.after,_that.before,_that.typeId);case _:
+return $default(_that.after,_that.before,_that.typeId);case _:
   return null;
 
 }
@@ -209,10 +208,9 @@ return $default(_that.dateEnabled,_that.after,_that.before,_that.typeId);case _:
 
 
 class _SymptomFilter extends SymptomFilter {
-  const _SymptomFilter({this.dateEnabled = false, this.after, this.before, this.typeId}): super._();
+  const _SymptomFilter({this.after, this.before, this.typeId}): super._();
   
 
-@override@JsonKey() final  bool dateEnabled;
 @override final  DateTime? after;
 @override final  DateTime? before;
 @override final  String? typeId;
@@ -227,16 +225,16 @@ _$SymptomFilterCopyWith<_SymptomFilter> get copyWith => __$SymptomFilterCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SymptomFilter&&(identical(other.dateEnabled, dateEnabled) || other.dateEnabled == dateEnabled)&&(identical(other.after, after) || other.after == after)&&(identical(other.before, before) || other.before == before)&&(identical(other.typeId, typeId) || other.typeId == typeId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SymptomFilter&&(identical(other.after, after) || other.after == after)&&(identical(other.before, before) || other.before == before)&&(identical(other.typeId, typeId) || other.typeId == typeId));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,dateEnabled,after,before,typeId);
+int get hashCode => Object.hash(runtimeType,after,before,typeId);
 
 @override
 String toString() {
-  return 'SymptomFilter(dateEnabled: $dateEnabled, after: $after, before: $before, typeId: $typeId)';
+  return 'SymptomFilter(after: $after, before: $before, typeId: $typeId)';
 }
 
 
@@ -247,7 +245,7 @@ abstract mixin class _$SymptomFilterCopyWith<$Res> implements $SymptomFilterCopy
   factory _$SymptomFilterCopyWith(_SymptomFilter value, $Res Function(_SymptomFilter) _then) = __$SymptomFilterCopyWithImpl;
 @override @useResult
 $Res call({
- bool dateEnabled, DateTime? after, DateTime? before, String? typeId
+ DateTime? after, DateTime? before, String? typeId
 });
 
 
@@ -264,10 +262,9 @@ class __$SymptomFilterCopyWithImpl<$Res>
 
 /// Create a copy of SymptomFilter
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? dateEnabled = null,Object? after = freezed,Object? before = freezed,Object? typeId = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? after = freezed,Object? before = freezed,Object? typeId = freezed,}) {
   return _then(_SymptomFilter(
-dateEnabled: null == dateEnabled ? _self.dateEnabled : dateEnabled // ignore: cast_nullable_to_non_nullable
-as bool,after: freezed == after ? _self.after : after // ignore: cast_nullable_to_non_nullable
+after: freezed == after ? _self.after : after // ignore: cast_nullable_to_non_nullable
 as DateTime?,before: freezed == before ? _self.before : before // ignore: cast_nullable_to_non_nullable
 as DateTime?,typeId: freezed == typeId ? _self.typeId : typeId // ignore: cast_nullable_to_non_nullable
 as String?,

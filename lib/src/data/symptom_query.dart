@@ -13,16 +13,14 @@ DateTime _startOfDay(DateTime d) => DateTime(d.year, d.month, d.day);
 /// `[startOfDay(after), startOfDay(before) + 1 day)`.
 bool matchesFilter(Symptom s, SymptomFilter filter) {
   if (filter.typeId != null && s.typeId != filter.typeId) return false;
-  if (filter.dateEnabled) {
-    final after = filter.after;
-    if (after != null && s.timestamp.isBefore(_startOfDay(after))) {
-      return false;
-    }
-    final before = filter.before;
-    if (before != null) {
-      final endExclusive = _startOfDay(before).add(const Duration(days: 1));
-      if (!s.timestamp.isBefore(endExclusive)) return false;
-    }
+  final after = filter.after;
+  if (after != null && s.timestamp.isBefore(_startOfDay(after))) {
+    return false;
+  }
+  final before = filter.before;
+  if (before != null) {
+    final endExclusive = _startOfDay(before).add(const Duration(days: 1));
+    if (!s.timestamp.isBefore(endExclusive)) return false;
   }
   return true;
 }

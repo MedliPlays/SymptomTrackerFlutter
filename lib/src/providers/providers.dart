@@ -75,7 +75,6 @@ class ChartsFilter extends _$ChartsFilter {
   SymptomFilter build() {
     final now = DateTime.now();
     return SymptomFilter(
-      dateEnabled: true,
       after: now.subtract(const Duration(days: 10)),
       before: now,
     );
