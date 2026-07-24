@@ -56,6 +56,38 @@ List<Symptom> applySort(
   return sorted;
 }
 
+/// Filters and sorts symptom types for the Types list.
+List<SymptomType> applyTypeFilterSort(
+  List<SymptomType> types,
+  TypeSeverityFilter filter,
+  TypeSort sort,
+) {
+  final filtered = types.where((t) => switch (filter) {
+        TypeSeverityFilter.all => true,
+        TypeSeverityFilter.withSeverity => t.hasSeverity,
+        TypeSeverityFilter.withoutSeverity => !t.hasSeverity,
+      }).toList();
+
+  int byName(SymptomType a, SymptomType b) =>
+      a.name.toLowerCase().compareTo(b.name.toLowerCase());
+
+  switch (sort) {
+    case TypeSort.nameAtoZ:
+      filtered.sort(byName);
+    case TypeSort.nameZtoA:
+      filtered.sort((a, b) => byName(b, a));
+    case TypeSort.severityFirst:
+      filtered.sort((a, b) => a.hasSeverity == b.hasSeverity
+          ? byName(a, b)
+          : (a.hasSeverity ? -1 : 1));
+    case TypeSort.severityLast:
+      filtered.sort((a, b) => a.hasSeverity == b.hasSeverity
+          ? byName(a, b)
+          : (a.hasSeverity ? 1 : -1));
+  }
+  return filtered;
+}
+
 /// Symptoms logged today (used by the Today screen and its badge).
 List<Symptom> symptomsToday(List<Symptom> symptoms, DateTime now) {
   final start = _startOfDay(now);

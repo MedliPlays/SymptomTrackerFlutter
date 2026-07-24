@@ -111,33 +111,11 @@ class TypesSortOrder extends _$TypesSortOrder {
 @riverpod
 List<SymptomType> displayedTypes(Ref ref) {
   final all = ref.watch(symptomTypesProvider).asData?.value ?? const [];
-  final severityFilter = ref.watch(typesSeverityFilterProvider);
-  final sort = ref.watch(typesSortOrderProvider);
-
-  final filtered = all.where((t) => switch (severityFilter) {
-        TypeSeverityFilter.all => true,
-        TypeSeverityFilter.withSeverity => t.hasSeverity,
-        TypeSeverityFilter.withoutSeverity => !t.hasSeverity,
-      }).toList();
-
-  int byName(SymptomType a, SymptomType b) =>
-      a.name.toLowerCase().compareTo(b.name.toLowerCase());
-
-  switch (sort) {
-    case TypeSort.nameAtoZ:
-      filtered.sort(byName);
-    case TypeSort.nameZtoA:
-      filtered.sort((a, b) => byName(b, a));
-    case TypeSort.severityFirst:
-      filtered.sort((a, b) => a.hasSeverity == b.hasSeverity
-          ? byName(a, b)
-          : (a.hasSeverity ? -1 : 1));
-    case TypeSort.severityLast:
-      filtered.sort((a, b) => a.hasSeverity == b.hasSeverity
-          ? byName(a, b)
-          : (a.hasSeverity ? 1 : -1));
-  }
-  return filtered;
+  return applyTypeFilterSort(
+    all,
+    ref.watch(typesSeverityFilterProvider),
+    ref.watch(typesSortOrderProvider),
+  );
 }
 
 // ---- Derived lists ----------------------------------------------------------
